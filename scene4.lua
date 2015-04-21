@@ -1,34 +1,27 @@
 ---------------------------------------------------------------------------------
 --
--- scene1.lua
+-- scene4.lua
 --
 ---------------------------------------------------------------------------------
-local ship = require("ship")
+
 local composer = require( "composer" )
 local scene = composer.newScene()
 
----------------------------------------------------------------------------------
--- BEGINNING OF YOUR IMPLEMENTATION
----------------------------------------------------------------------------------
-
 local image, text1, text2, text3, memTimer
 
--- Touch event listener for background image
 local function onSceneTouch( self, event )
 	if event.phase == "began" then
 		
-		composer.gotoScene( "scene2", "slideLeft", 800  )
+		composer.gotoScene( "scene1", "slideUp", 800  )
 		
 		return true
 	end
 end
 
-
--- Called when the scene's view does not exist:
 function scene:create( event )
 	local sceneGroup = self.view
 	
-	image = display.newImage( "bg.jpg" )
+	image = display.newImage( "bg2.jpg" )
 	image.x = display.contentCenterX
 	image.y = display.contentCenterY
 	
@@ -36,7 +29,7 @@ function scene:create( event )
 	
 	image.touch = onSceneTouch
 	
-	text1 = display.newText( "Scene 1", 0, 0, native.systemFontBold, 24 )
+	text1 = display.newText( "Scene 4", 0, 0, native.systemFontBold, 24 )
 	text1:setFillColor( 255 )
 	text1.x, text1.y = display.contentWidth * 0.5, 50
 	sceneGroup:insert( text1 )
@@ -50,23 +43,21 @@ function scene:create( event )
 	text3:setFillColor( 255 ); text3.isVisible = false
 	text3.x, text3.y = display.contentWidth * 0.5, display.contentHeight - 100
 	sceneGroup:insert( text3 )
-	    ShipBody = Ship:new()
---     sceneGroup:insert( ShipBody )
-	print( "\n1: create event")
+	
+	print( "\n4: create event" )
 end
 
 function scene:show( event )
 	
 	local phase = event.phase
-	
 	if "did" == phase then
 	
-		print( "1: show event, phase did" )
+	print( "4: show event, phase did" )
 	
 		-- remove previous scene's view
-		composer.removeScene( "scene4" )
+		composer.removeScene( "scene3" )
 	
-		-- Update Lua memory text display
+		-- update Lua memory text display
 		local showMem = function()
 			image:addEventListener( "touch", image )
 			text3.isVisible = true
@@ -76,16 +67,14 @@ function scene:show( event )
 		memTimer = timer.performWithDelay( 1000, showMem, 1 )
 	
 	end
-	
 end
 
 function scene:hide( event )
 	
 	local phase = event.phase
-	
 	if "will" == phase then
 	
-		print( "1: hide event, phase will" )
+		print( "4: hide event, phase will\n" )
 	
 		-- remove touch listener for image
 		image:removeEventListener( "touch", image )
@@ -97,11 +86,10 @@ function scene:hide( event )
 		text2.text = "MemUsage: "
 	
 	end
-	
 end
 
 function scene:destroy( event )
-	print( "((destroying scene 1's view))" )
+	print( "((destroying scene 4's view))" )
 end
 
 ---------------------------------------------------------------------------------
