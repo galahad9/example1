@@ -12,7 +12,7 @@ local image, text1, text2, text3, memTimer
 local function onSceneTouch( self, event )
 	if event.phase == "began" then
 		
-		composer.gotoScene( "scene3", "fade", 400  )
+		composer.gotoScene( "scene1", "fade", 400  )
 		
 		return true
 	end
